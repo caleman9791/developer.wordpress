@@ -1,0 +1,19 @@
+¿Qué es un bloque?
+
+El editor de bloques, también conocido como Gutenberg, es el reemplazo moderno de TinyMce, que es el editor con el que WordPress tradicionalmente vino y con el que ya puede estar familiarizado.
+
+Aunque es un proyecto en curso que todavía está en desarrollo activo, el editor de bloques ya es lo suficientemente maduro como para ser el editor predeterminado en nuevas instalaciones de WordPress.
+
+La pista está en el nombre, el editor de bloques le permite editar su contenido como unidades discretas conocidas como «bloques» donde cada «bloque» contiene un cierto tipo de contenido, como un párrafo, un encabezado o una imagen. Si previamente ha usado Gutenberg, entonces puede ser consciente de otros tipos de bloques, como el bloque de cobertura, el bloque de cotizaciones o el bloque de la galería. Cada bloque es un elemento en su publicación o página.
+
+Si aún tiene que experimentar el editor de bloques, puede probarlo en esta demostración interactiva.
+
+Los bloques de Gutenberg están construidos con React. Implementa un bloque personalizado desde un complemento de WordPress y, por lo tanto, un complemento es esencialmente lo que construirá durante este curso, aunque trabajará principalmente con JavaScript y React en lugar de PHP.
+
+Algunos tipos de bloques, como el bloque de párrafo o el bloque de imágenes, son «primitivos» que contienen un solo elemento de contenido. Otros tipos de bloques permiten que los bloques "primitivos" estén contenidos dentro de ellos. Un ejemplo de este tipo de bloque es el bloque de grupo que le permite agrupar bloques para que puedan tratarse como una sola unidad.
+
+Es este tipo de bloque que creará en este curso, es decir, un bloque que contiene otros bloques y los estiliza como «columnas de periódicos».
+
+El contenido de una publicación o página se almacena en la tabla WP_Posts en la base de datos tal como siempre ha sido con el editor basado en TinyMCE más antiguo. Sin embargo, el editor de bloques inserta comentarios HTML en el contenido para delinear bloques individuales y proporcionar meta información que se analice cuando el bloque se representa en el navegador.
+
+Estos comentarios HTML se ven así:

@@ -1,0 +1,68 @@
+Understand the structure of the project
+
+Having scaffolded your project in the last step, you now have all the code for a fully working block. Yes it’s basic, but it’s all the code you need for a simple block and it works – as you’ll see when you build and run it the next lesson.
+
+Take a look at what the scaffolded project looks like by opening the multi-columns directory in your preferred code editor. You will see the following file structure:
+
+First there are three directories:
+
+    The build directory is where the final deployable build of the block will go. You will probably never need to touch this directory directly.
+    The node_modules directory is where all the modules that the build process depends on live. Again you will in all likelihood never look in here.
+    The src directory is where you will spend most of your time. This is the directory that contains the files that you will work with to create the markup and the functionality of your block and which are ultimately compiled into the build directory. You’ll take a more detailed look at the contents of this directory later in this lesson.
+
+Following those three directories are a number of files. The first two, .editorconfig and .gitignore, are used by the development environment and by version control respectively. You will probably not need to edit these unless you want to customise something.
+
+Next up is multi-columns.php. As you learned earlier, the project is essentially a WordPress plugin and this is the main plugin file that initiates execution of the plugin. If you’ve ever created or worked with a WordPress plugin then the header information in this file should look familiar.
+
+	
+<?php
+/**
+ * Plugin Name:       Multi Columns
+ * Description:       Example block written with ESNext standard and JSX support – build step required.
+ * Requires at least: 5.8
+ * Requires PHP:      7.0
+ * Version:           0.1.0
+ * Author:            The WordPress Contributors
+ * License:           GPL-2.0-or-later
+ * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+ * Text Domain:       multi-columns
+ *
+ * @package           create-block
+ */
+
+After the standard plugin header this file contains just a few lines of executable code consisting of a single function which is hooked onto the init action. This function calls the register_block_type() function passing the path to the previously mentioned build directory as a parameter. This is the location of block.json which contains the metadata that defines the block which the register_block_type() function needs.
+
+Next you’ll see package-lock.json. This is another file which you probably won’t need to do anything with unless you intend to customise your environment in some way.
+
+package.json is yet another file which you probably won’t need to change, but if you’re not familiar with it then it’s a good idea to learn more about what it is and what it’s for. You can do that with this guide to package.json. Amongst other information crucial to the project this file contains a scripts object which defines the scripts that you can run at the command prompt, as you’ll see in the next lesson.
+
+Finally there’s a readme.txt file which you’ll only need to edit if you intend to publish your plugin to the WordPress Plugin Directory.
+
+The src directory
+
+You can now turn your attention to the src directory. As already indicated this is where you’ll spent most, if not all, of your time when developing a block.
+
+This is what you will see:
+
+You will be making changes to most of the files in the src directory so you will become very familiar with them as you work through this course. However, let’s start off by introducing you to each of them in turn.
+
+    block.json stores the metadata for the block structured as a JSON object. You’ll be working extensively with this file, but take a moment to learn more about it in this handbook page. In this file you’ll define attributes that the functions defined in edit.js and save.js can consume as parameters.
+    edit.js is where you’ll spend most of your time as you work on a project. This file exports a component, Edit(), that is rendered in the editor and so determines how the block appears and functions within the editor. It is where you work on the markup of the block, and the associated controls that appear in the Inspector Panel in the editor. The user then has the ability to interact with the block and customize the appearance and content of the block. The function defined here will usually take an attributes parameter which is an object containing the attributes defined in block.json.
+    editor.scss is a file containing CSS that styles the appearance of the block in the block editor. Usually you will want the block to appear the same in the editor as it does in the front end of the website, so you’ll probably make no, or very few, changes to this file. You will notice that this example merely adds a border when the block is selected in the editor.
+    index.js is the starting point for the JavaScript execution of the block. It imports the functions exported by edit.js and save.js and then executes registerBlockType passing as parameters the name of the block and an object containing the two imported functions.
+    save.js exports a function, save(), that determines the markup that will be saved to the post_content field in the wp_posts table when the post or page is saved, and hence determines how the block appears and functions in the front end. Like with edit.js the function defined here will usually take an attributes parameter which is an object containing the attributes defined in block.json.
+    style.scss is another file containing CSS. In this case the CSS determines the styling of the block in the front end but also in the editor. Styles here can be over-ridden by styles in editor.scss if you need the block to appear different in the editor. However it would be unusual to do this.
+
+Note that editor.scss and style.scss are actually SASS files and not standard CSS files. These files require the build step which you’ll learn about in the next lesson.
+
+The alert among you may have noticed that there is a difference in capitalisation in edit.js and save.js, i.e. Edit() is spelled with a capital E, whereas save() is not. So what gives here?
+
+To a certain extent it’s arbitrary and just the way that @wordpress/create-block scaffolds the application, they could just as easily have been named with consistent casing. But there is some nuance to this difference in naming.
+
+edit.js exports a React component whereas save.js exports a function. So Edit() is a React component, and the convention is for React components to be named with a name starting with an upper-case letter. On the other hand save() is a function, the convention for these being to have a name starting with a lower-case letter.
+
+This need not delay your progress through this course, but if you are interested you can read more about the conversation surrounding this naming style in this discussion, and in particular this comment.
+
+Don’t worry if some of the above is confusing at this stage. It will all become much, much clearer and make much more sense to you as you progress through the course. Remember that you should follow the lessons in sequence, as each lesson builds on what was learned earlier. Try not to skip ahead.
+
+In the next lesson you’ll actually build and run the project and see how it looks in the editor and in the front end.

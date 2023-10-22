@@ -1,0 +1,30 @@
+Andamio tu primer bloque
+
+Puede crear todos los archivos para su proyecto manualmente construyéndolos desde cero. Afortunadamente, hay una manera mucho más fácil.
+
+Existe una herramienta llamada «Create Block», que es la herramienta oficialmente compatible para andamios para implementar un bloque personalizado.
+
+Para obtener más información sobre la herramienta @WordPress/Create-Block, consulte Uso del tutorial de herramientas Crear-Block, o la página @WordPress/Create-Block en el manual.
+
+El proyecto generado es esencialmente un complemento que registra un bloque. La herramienta de andamio genera todos los archivos necesarios para el proyecto. Los archivos contienen PHP, JavaScript, CSS y JSON, básicamente todo lo que necesita para despegar su proyecto con un esfuerzo mínimo. Integra una configuración moderna de compilación sin necesidad de configuración de su parte.
+
+Para andamiar su primer complemento que implementa un bloque, abra una aplicación de terminal y navegue al directorio donde desea crear su proyecto. Esto normalmente estará en el directorio WP-Content/Plugins de su instalación de WordPress, pero puede crearlo en otro lugar y enlace simbólico desde el directorio de complementos si lo desea.
+
+Una vez que esté en el directorio deseado, escriba el siguiente comando en el mensaje:
+> npx @wordpress/create-block múltiples columnas
+
+El comando anterior sigue la estructura npx @wordpress/create-block [opciones] [slug].
+
+Puede usar cualquier babosa que le guste, pero es una buena idea usar algo que describe el complemento, por lo que las multi-columnas tienen sentido en este caso.
+
+La babosa se usa para varios propósitos:
+
+- para identificar el bloque,
+- Como el nombre del directorio, que será la ubicación de salida para los archivos de andamio,
+- y como el nombre del complemento de WordPress.
+
+Tenga en cuenta que no hemos necesitado proporcionar ninguna opción en este caso.
+
+Espere mientras el proceso ejecute su curso, que tomará uno o dos minutos. Una vez que se haya completado y ha sido devuelto al cambio de símbolo del sistema al directorio del proyecto escribiendo CD múltiples columnas. Aquí verá la estructura del archivo de su nuevo proyecto. Echarás un vistazo a esto en la próxima lección.
+Anterior
+Sigón

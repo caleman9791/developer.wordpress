@@ -1,0 +1,109 @@
+Build and run your project
+
+You may have noticed when you ran the command npx @wordpress/create-block multi-columns to scaffold your new block that, before returning you to the command prompt, the program displayed the following list of commands that you can run.
+
+You may have noticed that these commands correspond to items defined in the scripts object in package.json.
+
+The two most important commands to know about at this stage are:
+
+– npm start
+– npm run build
+
+npm start is what you use during development, it starts a local development process that watches the files in the src directory, and when changes are made to those files, runs the build process.
+
+npm run build takes all the code in the src directory, and creates the final deployable build of the block.
+
+If you’ve previously worked with Node.js projects such as this you’re probably expecting that you will have to run a couple of commands before the application will run. And of course, normally you would. In this case though the scaffolding process has already provided you with a built version so there is no need at the moment to run the commands you would normally expect, namely npm install and npm run build.
+
+Instead you can go to the Plugins page in the WordPress admin and you will see the plugin is already available and ready to be activated.
+
+Go ahead and activate it. Next create a new post and open the block inserter. You will find the ‘multi-columns’ block under ‘Widgets’.
+
+Why is it under ‘Widgets’? Well, look in block.json in the src directory and you will see that the "category" is set there and is defined as "widgets".
+
+By the way, from now on we won’t specify the src directory. You should henceforth assume that any file you need to examine or edit is in the src directory, unless otherwise specified. Throughout this course you will only be working with files in the src directory and will never need to even go into the build directory, which only contains files compiled by the build process – which you will be learning about shortly.
+
+You will want your block to appear under ‘Design’, so go ahead and change "widgets" on line 7 to "design".
+
+While you’re about it, change the icon too. Change "smiley" on line 8 to something else, such as "columns", as that represents what you’re ultimately going to implement as you progress through this course.
+
+If you want to choose a different icon the you can use any Dashicon that you like.
+
+Your block.json file should now look like this with lines 7 and 8 changed:
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+	
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "create-block/multi-columns",
+  "version": "0.1.0",
+  "title": "Multi Columns",
+  "category": "design",
+  "icon": "columns",
+  "description": "Example block written with ESNext standard and JSX support – build step required.",
+  "supports": {
+    "html": false
+  },
+  "textdomain": "multi-columns",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}
+
+Save the block.json file and refresh your post in the browser. Look in the block inserter and you’ll find that…. nothing has changed! What??!!
+
+This is because you’ve only changed the file in the src directory. The change has not propagated to the build directory.
+
+Recall from the last lesson that the register_block_type() function in multi-columns.php takes the build directory as a parameter, not the src directory.
+
+In order to ensure that the changes are also in the build directory you need to build the project. To do that run the following command from the project directory:
+
+1
+	
+npm run build
+
+You’ll recognise this command as one of the ones that the scaffolding command listed at the end of it’s execution and which we drew your attention to in the screenshot at the beginning of this lesson.
+
+Now if you once again refresh the editor page in the browser and look in the block inserter you’ll find the multi-columns block is now in the ‘Design’ category and features the new icon.
+
+Now click on it to add the block to the post. It will look like this:
+
+Note that the text you see here corresponds to line 35 in src/edit.js:
+
+35
+	
+{ __( 'Multi Columns – hello from the editor!', 'multi-columns' ) }
+
+Publish the post and take a look at the front-end view of the post. (Alternatively you can use the Preview Post feature in the block editor)
+
+Note here that the text corresponds to line 29 in src/save.js:
+29
+	
+{ __( 'Multi Columns – hello from the saved content!', 'multi-columns') }
+
+As you can see from this little experiment, edit.js determines what the content editor sees while working on their content in the block editor, whereas save.js determines what gets saved to the post_content field in the wp_posts table of the WordPress database and so what gets displayed in the site visitor’s browser.
+
+In the next lesson you’ll learn about a better way to build your project while you’re developing it so that you don’t have to run npm run build every time you make a change. You’ll also make your first changes to what is displayed both in the editor and in the front end of the site.
+Activity
+
+Experiment with different categories and icons for the block. Remember that you can choose any Dashicon that you like.
+
+Anterior
+Siguiente
